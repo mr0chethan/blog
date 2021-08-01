@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from "react"
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
+import Signin from "./Signin"
+import User from "./User"
+
 
 function App() {
+
+  let [user, setUser] = useState(null)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/user">
+          <User user ={user}/>
+        </Route>
+        <Route path="/">
+          <Signin handleUser={setUser} user={user}/>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
